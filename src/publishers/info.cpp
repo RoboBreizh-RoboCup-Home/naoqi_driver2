@@ -39,7 +39,7 @@ void InfoPublisher::reset( rclcpp::Node* node )
 
   std::string robot_desc = naoqi::tools::getRobotDescription(robot_);
   std::string parameter_name = "/robot_description";
-  rclcpp::ParameterValue value = node->declare_parameter(parameter_name);
+  rclcpp::ParameterValue value = node->declare_parameter(parameter_name, rclcpp::PARAMETER_STRING);
   node->set_parameter(rclcpp::Parameter(parameter_name, robot_desc));
   std::cout << "load robot description from file" << std::endl;
 
