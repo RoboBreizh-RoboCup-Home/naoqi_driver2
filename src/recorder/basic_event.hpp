@@ -119,7 +119,7 @@ public:
 protected:
   bool isTooOld(const T& msg)
   {
-    rclcpp::Duration d((helpers::Time::now() - msg.header.stamp).nanoseconds());
+    rclcpp::Duration d(static_cast<std::chrono::nanoseconds>((helpers::Time::now() - msg.header.stamp).nanoseconds()));
     if (static_cast<float>(d.seconds()) > buffer_duration_)
     {
       return true;
@@ -129,7 +129,7 @@ protected:
 
   bool isOlderThan(const T& msg, const rclcpp::Time& time)
   {
-    rclcpp::Duration d((time - msg.header.stamp).nanoseconds());
+    rclcpp::Duration d(static_cast<std::chrono::nanoseconds>((time - msg.header.stamp).nanoseconds()));
     if (static_cast<float>(d.seconds()) > buffer_duration_)
     {
       return true;
